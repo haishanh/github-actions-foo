@@ -9,16 +9,9 @@ action "Install" {
   args = "install"
 }
 
-action "Lint" {
+action "Test" {
   uses = "docker://node:8.9-alpine"
   needs = ["Install"]
   runs = "yarn"
-  args = "lint"
-}
-
-action "Build" {
-  uses = "docker://node:8.9-alpine"
-  needs = ["Lint"]
-  runs = "yarn"
-  args = "build"
+  args = "test"
 }
