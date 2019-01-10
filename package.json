@@ -1,0 +1,10 @@
+{
+  "name": "github-actions-foo",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Haishan <haishanhan@gmail.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  }
+}
