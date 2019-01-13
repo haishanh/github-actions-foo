@@ -41,7 +41,7 @@ async function main() {
   });
 
   const ghEventJSON = await readFile(GITHUB_EVENT_PATH, 'utf8');
-  console.log(ghEventJSON);
+  console.log(JSON.stringify(JSON.parse(ghEventJSON), null, 2));
 }
 
 main();
