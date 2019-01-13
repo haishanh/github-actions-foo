@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -xe
+
 BUILD_DIR="${BUILD_DIR:-build}"
 BRANCH="${BRANCH:-gh-pages}"
 
