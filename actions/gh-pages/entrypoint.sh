@@ -13,6 +13,7 @@ git init
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@noreply.github.com"
 git add .
+git status
 git commit -m "First commit"
 git push -u $remote HEAD:$BRANCH --force
 rm -rf .git
