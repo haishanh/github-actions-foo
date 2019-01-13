@@ -1,6 +1,6 @@
 workflow "Foo workflow" {
   on = "push"
-  resolves = ["Test"]
+  resolves = ["Deploy"]
 }
 
 action "Install" {
@@ -14,4 +14,17 @@ action "Test" {
   needs = ["Install"]
   runs = "yarn"
   args = "test"
+}
+
+action "Build" {
+  uses = "docker://node:8.9-alpine"
+  needs = ["Test"]
+  runs = "yarn"
+  args = "build"
+}
+
+action "Deploy" {
+  uses = "haishanh/github-actions-foo/actions/gh-pages@master"
+  needs = ["Build"]
+  secrets = ["GITHUB_TOKEN"]
 }
