@@ -24,7 +24,6 @@ action "Build" {
 }
 
 action "Deploy" {
-  # uses = "haishanh/github-actions-foo/actions/gh-pages@master"
   uses = "./actions/gh-pages@master"
   needs = ["Build"]
   secrets = ["GITHUB_TOKEN"]
