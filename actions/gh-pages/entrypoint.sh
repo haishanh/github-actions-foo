@@ -7,7 +7,8 @@ BRANCH="${BRANCH:-gh-pages}"
 
 cd $BUILD_DIR
 
-remote="https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+# remote="https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+remote="https://github.com/haishanh/${GITHUB_REPOSITORY}.git"
 git init
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@noreply.github.com"
