@@ -16,7 +16,7 @@ git config user.email "${GITHUB_ACTOR}@noreply.github.com"
 git add .
 git status
 git commit -m "First commit"
-git push -u $remote HEAD:$BRANCH --force
+git push -f $remote HEAD:$BRANCH
 rm -rf .git
 
 echo "done"
