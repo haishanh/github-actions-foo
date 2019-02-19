@@ -4,20 +4,20 @@ workflow "Foo workflow" {
 }
 
 action "Install" {
-  uses = "docker://node:8.9-alpine"
+  uses = "docker://node:alpine"
   runs = "yarn"
   args = "install"
 }
 
 action "Test" {
-  uses = "docker://node:8.9-alpine"
+  uses = "docker://node:alpine"
   needs = ["Install"]
   runs = "yarn"
   args = "test"
 }
 
 action "Build" {
-  uses = "docker://node:8.9-alpine"
+  uses = "docker://node:alpine"
   needs = ["Test"]
   runs = "yarn"
   args = "build"
