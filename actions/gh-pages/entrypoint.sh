@@ -7,7 +7,8 @@ BRANCH="${BRANCH:-gh-pages}"
 
 cd $BUILD_DIR
 
-remote="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+# NOTE push with GITHUB_TOKEN won't trigger a gh-pages deployment
+remote="https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 # remote="https://github.com/${GITHUB_REPOSITORY}.git"
 git init
 git config user.name "${GITHUB_ACTOR}"
