@@ -2,10 +2,10 @@
 
 set -e
 
-BUILD_DIR="${BUILD_DIR:-build}"
+PUBLISH_DIR="${PUBLISH_DIR:-public}"
 BRANCH="${BRANCH:-gh-pages}"
 
-cd $BUILD_DIR
+cd $PUBLISH_DIR
 
 # NOTE push with GITHUB_TOKEN won't trigger a gh-pages deployment
 remote="https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
