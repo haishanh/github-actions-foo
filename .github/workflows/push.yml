@@ -49,20 +49,8 @@ jobs:
         mkdir public
         mv index.html public/
 
-    - name: t0
-      if: github.event_name == 'push'
-      run: echo "github.event_name == 'push'"
-
-    - name: t1
-      if: github.ref == 'refs/heads/dev'
-      run: echo "t1"
-
-    - name: t2
-      if: github.event.ref == 'refs/heads/dev'
-      run: echo "${{ github.event.ref }}"
-
     - name: Push to gh-pages
-      if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+      if: github.event_name == 'push' && github.event.ref == 'refs/heads/dev'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_DIR: public
