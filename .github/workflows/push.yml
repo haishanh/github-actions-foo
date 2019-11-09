@@ -53,7 +53,7 @@ jobs:
           mv index.html public/
 
       - name: Push to gh-pages
-        if: github.event_name == 'push' && github.event.ref == 'refs/heads/dev'
+        # if: github.event_name == 'push' && github.event.ref == 'refs/heads/dev'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_DIR: public
