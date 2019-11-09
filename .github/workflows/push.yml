@@ -1,0 +1,70 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: deploy
+
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install
+        run: yarn
+
+      - name: check env
+        run: |
+          echo "HOME: $HOME"
+          echo "PWD: $PWD"
+          echo "GITHUB_WORKFLOW $GITHUB_WORKFLOW"
+          echo "GITHUB_ACTION $GITHUB_ACTION"
+          echo "GITHUB_ACTOR $GITHUB_ACTOR"
+          echo "GITHUB_REPOSITORY $GITHUB_REPOSITORY"
+          echo "GITHUB_EVENT_NAME $GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH $GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE $GITHUB_WORKSPACE"
+          echo "GITHUB_SHA $GITHUB_SHA"
+          echo "GITHUB_REF $GITHUB_REF"
+          echo "GITHUB_HEAD_REF $GITHUB_HEAD_REF"
+          echo "GITHUB_BASE_REF $GITHUB_BASE_REF"
+          echo "--- event ---"
+          cat $GITHUB_EVENT_PATH
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Build
+        run: |
+          mkdir public
+          mv index.html public/
+
+      - name: Push to gh-pages
+        # if: github.event_name == 'push' && github.event.ref == 'refs/heads/dev'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_DIR: public
+          BRANCH: gh-pages
+        run: |
+          cd $PUBLISH_DIR
+          ls -l
+          git init
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@noreply.github.com"
+          git add .
+          git status
+          git commit -m "Push to gh-pages"
+          git push -f https://$GITHUB_ACTOR:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:$BRANCH
