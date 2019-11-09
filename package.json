@@ -4,7 +4,7 @@
     "build": "mkdir build 2> /dev/null; cp index.html build/"
   },
   "name": "github-actions-foo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "author": "Haishan <haishanhan@gmail.com>",
   "license": "UNLICENSED",
